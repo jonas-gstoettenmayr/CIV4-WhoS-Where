@@ -1,0 +1,27 @@
+Potential Annotation apps (to check out):
+roboflow
+lablebox
+cvat
+
+Our TASKS:
+- match cleaned data frames to ground truth data frame (360GB github)
+- so we know what animals the bounding boxes represent
+- annotate the new dataset with habitats
+- train habitat classifier
+- classfy habitats and build probability distribution
+
+multiple boxes per frame, same size if possible
+- either per animal or per group of animals
+- or per group of animals
+- no NN necessary here
+
+Than anotate the habitat of bounding box (cut it out is the easiest)
+- fine tune foundation model (like dino transformer)
+
+For the first tests annotate roughly ~hundrets of pictures
+
+
+potential:
+tree to animal distribution
+tree abdeckungs %
+
