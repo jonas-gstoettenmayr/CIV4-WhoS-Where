@@ -15,9 +15,11 @@ Jonas Gstöttenmayr (<s2410929009@fhooe.at>)
 
 Source data: [https://zenodo.org/records/19034999](https://zenodo.org/records/19034999) \
 Annotated data: Made by us, availabe under - \
-Ground truth: [https://github.com/bambi-eco/Dataset](https://github.com/bambi-eco/Dataset) 
+Ground truth: [https://github.com/bambi-eco/Dataset](https://github.com/bambi-eco/Dataset)
 
 ### Folder Structure
+
+From the source files download the images_rgb.zip and labels_matched_rgb.zip, then simply extract them into a data folder from the root directory, the resulting structure should look like:
 
 ```text
 data/
