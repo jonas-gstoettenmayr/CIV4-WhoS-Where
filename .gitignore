@@ -1,5 +1,6 @@
 #custom
-data/
+data/*
+!data/gt_headings.txt
 
 # Python-generated files
 __pycache__/

@@ -23,16 +23,19 @@ From the source files download the images_rgb.zip and labels_matched_rgb.zip, th
 
 ```text
 data/
+├── gt_headings.txt
+├── gt/
+│   └── flight_id.txt...
 ├── labels_matched_rgb/
 │   ├── test/
 │   │   ├──frame_id.txt
 │   │   ├──...
-│   ├── train/
-│   └── val/
+│   ├── train.../
+│   └── val.../
 └── rgb_images/
-    ├── test/
+    ├── test.../
     ├── train/
     │   ├──frame_id.txt
     │   ├──...
-    └── val/
+    └── val.../
 ```
