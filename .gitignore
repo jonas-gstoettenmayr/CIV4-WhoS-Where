@@ -1,6 +1,7 @@
 #custom
 data/*
 !data/gt_headings.txt
+!data/bounding_boxes_with_labels
 
 # Python-generated files
 __pycache__/
