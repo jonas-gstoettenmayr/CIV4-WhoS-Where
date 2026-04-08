@@ -41,12 +41,12 @@ def build_group_boxes(
     """
     Cluster animal boxes for a single frame with DBSCAN and return grouped boxes.
 
-    Expected input columns: species, txt_x1, txt_y1, txt_w, txt_h
+    Expected input columns: class_id, txt_x1, txt_y1, txt_w, txt_h
     Returns one row per cluster with padded group box + species list.
 
     padding_ratio is percentage padding per side (0.12 = 12% of cluster width/height).
     """
-    required_cols = ["species", "txt_x1", "txt_y1", "txt_x2", "txt_y2", "txt_w", "txt_h"]
+    required_cols = ["class_id", "txt_x1", "txt_y1", "txt_x2", "txt_y2", "txt_w", "txt_h"]
     if padding_ratio < 0:
         raise ValueError("padding_ratio must be >= 0")
     if frame_boxes.empty:
@@ -100,7 +100,8 @@ def build_group_boxes(
             y2 += delta
             height = min_size
 
-        species_list = sorted(group["species"].astype(str).unique().tolist())
+        # species_list = group["class_id"].astype(str).unique().tolist()
+        counts = group["class_id"].value_counts().to_dict()
         grouped_rows.append(
             {
                 "cluster_id": cluster_id,
@@ -109,7 +110,7 @@ def build_group_boxes(
                 "group_w": width,
                 "group_h": height,
                 "n_animals": int(len(group)),
-                "species_in_cluster": species_list,
+                "species_in_cluster": [(species, count) for species, count in counts.items()],
             }
         )
 

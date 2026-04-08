@@ -17,6 +17,10 @@ Source data: [https://zenodo.org/records/19034999](https://zenodo.org/records/19
 Annotated data: Made by us, availabe under - \
 Ground truth: [https://github.com/bambi-eco/Dataset](https://github.com/bambi-eco/Dataset)
 
+### Cutouts
+
+The naming convention of the cutouts consists of `flight_frame_group_countAnimalid.jpg`
+
 ### Folder Structure
 
 From the source files download the images_rgb.zip and labels_matched_rgb.zip, then simply extract them into a data folder from the root directory, the resulting structure should look like:

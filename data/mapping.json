@@ -1,0 +1,30 @@
+{
+  "id_to_range": {
+    "a": [0, 1],
+    "b": [2, 16],
+    "c": [17, 22],
+    "d": [23, 26],
+    "e": [27, 33],
+    "f": [34, 41],
+    "g": [42, 48],
+    "h": [49, 52],
+    "i": [53, 55],
+    "j": [56, 59],
+    "k": [60, 69],
+    "l": [70, 74]
+  },
+  "id_to_name": {
+    "a": "No-animal",
+    "b": "Cervus elaphus (Red deer)",
+    "c": "Capreolus capreolus (Roe deer)",
+    "d": "Rupicapra rupicapra (Chamois)",
+    "e": "Homo sapiens (Human)",
+    "f": "Capra ibex (Alpine ibex)",
+    "g": "Dama dama (Fallow Deer)",
+    "h": "Unknown",
+    "i": "Canis lupus familiaris (Dog)",
+    "j": "Aves (Bird)",
+    "k": "Sus scrofa (Wild boar)",
+    "l": "Sus scrofa x Sus domesticus (Hybrid Pig)"
+  }
+}
