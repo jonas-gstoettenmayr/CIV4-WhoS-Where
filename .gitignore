@@ -15,3 +15,8 @@ wheels/
 
 # Virtual environments
 .venv
+
+
+# All images
+rgb_images/
+*.zip

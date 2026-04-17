@@ -10,23 +10,19 @@ from PIL import Image, ImageTk, UnidentifiedImageError
 
 
 IMAGE_EXTENSIONS = {".jpg"}
-WINDOW_WIDTH = 1200
-WINDOW_HEIGHT = 980
-MAX_DISPLAY_WIDTH = 1100
-MAX_DISPLAY_HEIGHT = 840
+WINDOW_WIDTH = 1000
+WINDOW_HEIGHT = 580
+MAX_DISPLAY_WIDTH = 900
+MAX_DISPLAY_HEIGHT = 440
 
 # Easy to modify: map number key -> class folder name.
 CLASS_LABELS: dict[str, str] = {
-    "0": "show",
-    "1": "john ground",
-    "2": "jane ground",
-    "3": "TREEEEEEEEEEEEEEEEEEEEEEEEEE",
-    "4": "rock",
-    "5": "orck",
-    "6": "kcor",
-    "7": "not ground",
-    "8": "lava",
-    "9": "H U H",
+    "0": "open",
+    "1": "sparse",
+    "2": "dense",
+    "3": "open_snow",
+    "4": "sparse_snow",
+    "5": "dense_snow"
 }
 
 
