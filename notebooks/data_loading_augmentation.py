@@ -20,7 +20,7 @@ def make_loaders():
     ])
 
     # Making datasets
-    path = Path().cwd()
+    path = Path(__file__).parent.parent
     data_path = path / "data"
     splitfolders.ratio(input = f"{data_path}/cut_images/merged", output = f"{data_path}/cut_images/split", ratio=(.6, .2, .2))
         #Uniformly split images are in cut_images/split/.
