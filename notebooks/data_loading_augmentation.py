@@ -3,6 +3,7 @@ from torchvision import transforms
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 import splitfolders
+from pathlib import Path
 
 def make_loaders():
     # Defining augmentations
@@ -19,7 +20,8 @@ def make_loaders():
     ])
 
     # Making datasets
-    data_path = r"C:/Users/tipka/Desktop/uni/Semester4/Computer Vision/Project/CIV4-WhoS-Where/data"
+    path = Path().cwd()
+    data_path = path / "data"
     splitfolders.ratio(input = f"{data_path}/cut_images/merged", output = f"{data_path}/cut_images/split", ratio=(.6, .2, .2))
         #Uniformly split images are in cut_images/split/.
 
