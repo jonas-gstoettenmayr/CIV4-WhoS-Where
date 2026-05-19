@@ -6,7 +6,7 @@ A project about finding out the distribution of animals in different forest envi
 
 Maria Helmetsberger (<s2410929013@fhooe.at>)\
 Bettina Pölzleitner (<s2410929023@fhooe.at>)\
-Andrey Mayev (<s2410929043@fhooe.at>)\
+Andrej Majev (<s2410929043@fhooe.at>)\
 Jonas Gstöttenmayr (<s2410929009@fhooe.at>)
 
 ## Repo structure
@@ -20,7 +20,8 @@ Jonas Gstöttenmayr (<s2410929009@fhooe.at>)
 Order to view Documentation in:
 
 1. [Data preperation](documentation/Data_preperation.md) (By Jonas Gstöttenmayr): explains code and decisions from: utils.py, view_images.ipynb, prototyping.ipyinb, cut_images.ipynb, match_lables_with_gt.ipynb
-2. 
+2. [Data annotation and augmentation](documentation/Data_annotation_and_augmentation.md) (By Andrej Majev): explains the annotation process and code and decisions from: data_loading_augmentation.py
+3. 
 
 ## Data
 
