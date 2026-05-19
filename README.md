@@ -21,7 +21,7 @@ Order to view Documentation in:
 
 1. [Data preperation](documentation/Data_preperation.md) (By Jonas Gstöttenmayr): explains code and decisions from: utils.py, view_images.ipynb, prototyping.ipyinb, cut_images.ipynb, match_lables_with_gt.ipynb
 2. [Data annotation and augmentation](documentation/Data_annotation_and_augmentation.md) (By Andrej Majev): explains the annotation process and code and decisions from: data_loading_augmentation.py
-3. 
+3. [Training](documentation/Training_models.md) (By Maria Helmetsberger): explains the models, the decisions and the outcome from: train_model.ipynb and train_model_efficientnetv2.ipynb
 
 ## Data
 

@@ -91,3 +91,52 @@ THen a function to show us the images with the predictions and the actual labels
 #### Confusion Matrix
 
 very simple, just a Confusion Matrix to check what it classifies as what. To check if our misclassifications make sense or if they do not make sense. Again based on the test set. 
+
+### Mobile Net V3 Small results
+
+![alt text](imgs\mobilenetv3_loss_accuracy.png)
+
+Last Epoch: Epoch 50/50  train_loss=0.0616  train_acc=0.979  val_loss=0.5282  val_acc=0.912
+
+
+Test Accuracy : 92.92%
+
+Test Balanced Accuracy : 93.53%
+
+![alt text](imgs\mobilenetv3_grad_cam_missclassification.png)
+
+![alt text](imgs\mobilenetv3_grad_cam_correct.png)
+
+
+Based on test set:
+
+Correct: 1155, Misclassified: 88 (7.1%)
+
+
+![alt text](imgs\mobilenetv3_confusion_matrix.png)
+
+
+### Efficient Net V2 Small results
+
+![alt text](imgs\efficientnetv2_loss_accuracy.png)
+
+Last Epoch: Epoch 50/50  train_loss=0.0272  train_acc=0.994  val_loss=0.4317  val_acc=0.910
+
+Test Accuracy : 92.52%
+
+Test Balanced Accuracy : 90.46%
+
+![alt text](imgs\efficientnetv2_grad_cam_missclassification.png)
+
+![alt text](imgs\efficientnetv2_grad_cam_correct.png)
+
+Based on test set:
+
+Correct: 1150, Misclassified: 93 (7.5%)
+
+![alt text](imgs\efficientnetv2_confusion_matrix.png)
+
+
+### General Conclusion
+
+If one looks at the confusion matrices, it makes sense why the model misclassified certain images. The confusion happens between the open/sparse classes or sparse/dense classes which are easy to confuse in my opinion. There is no confusion that is not understandable.
