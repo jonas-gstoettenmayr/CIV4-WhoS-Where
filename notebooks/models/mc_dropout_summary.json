@@ -1,0 +1,44 @@
+{
+  "model": "mobilenetv3_small_100",
+  "checkpoint": "models\\habitat_mobilenetv3_small_habitat.pth",
+  "num_classes": 9,
+  "dropout": 0.2,
+  "std_acc": 0.9292,
+  "mc_sweep": [
+    {
+      "T": 1,
+      "acc": 0.9195,
+      "mean_variance": NaN
+    },
+    {
+      "T": 2,
+      "acc": 0.9212,
+      "mean_variance": 0.009306
+    },
+    {
+      "T": 3,
+      "acc": 0.926,
+      "mean_variance": 0.023212
+    },
+    {
+      "T": 5,
+      "acc": 0.9276,
+      "mean_variance": 0.019258
+    },
+    {
+      "T": 8,
+      "acc": 0.9276,
+      "mean_variance": 0.019146
+    },
+    {
+      "T": 13,
+      "acc": 0.926,
+      "mean_variance": 0.01635
+    },
+    {
+      "T": 21,
+      "acc": 0.9292,
+      "mean_variance": 0.017579
+    }
+  ]
+}

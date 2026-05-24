@@ -1,4 +1,4 @@
-## Files: train_mode.ipynb and train_model_efficientnetv2-s.ipynb + everything in /notebooks/models
+## Files: train_mode.ipynb, train_model_efficientnetv2-s.ipynb, monte_carlo_dropout_mobilenetv3.ipynb and monte_carlo_dropout_efficientnetv2-s.ipynb + everything in /notebooks/models
 
 ### Trained two different models, one pretrained with MobileNetV3 and one pretrained with EfficientNetV2
 
@@ -140,3 +140,204 @@ Correct: 1150, Misclassified: 93 (7.5%)
 ### General Conclusion
 
 If one looks at the confusion matrices, it makes sense why the model misclassified certain images. The confusion happens between the open/sparse classes or sparse/dense classes which are easy to confuse in my opinion. There is no confusion that is not understandable.
+
+### Using MC Dropout
+
+We applied MC Dropout to both trained models, keeping dropout active at inference time and sweeping T = 1, 2, 3, 5, 8, 13, 21 forward passes per image.
+
+### What we did
+
+For each T, we run T stochastic forward passes and average the softmax outputs to get the final prediction. The variance across passes gives us a per-sample uncertainty score, normalized to [0, 1].
+
+We also compare the confusion matrices of standard inference vs MC Dropout (T=21) side by side, and print a per-class accuracy delta to see if averaging stochastic passes helped or hurt specific habitat classes.
+
+
+### Results
+
+#### Mobilenetv3
+
+
+![alt text](imgs/mobilenetv3_results_McDropout.png)
+
+T=  1  acc=91.95%  mean_norm_var=nan
+
+T=  2  acc=92.12%  mean_norm_var=0.0093
+
+T=  3  acc=92.60%  mean_norm_var=0.0232
+
+T=  5  acc=92.76%  mean_norm_var=0.0193
+
+T=  8  acc=92.76%  mean_norm_var=0.0191
+
+T= 13  acc=92.60%  mean_norm_var=0.0164
+
+T= 21  acc=92.92%  mean_norm_var=0.0176
+
+Baseline (dropout off) : 92.92%
+
+
+![alt text](imgs/mobilenetv3_uncertainty.png)
+
+Mean norm. variance — Correct : 0.0116
+
+Mean norm. variance — Wrong : 0.0965
+
+
+![alt text](imgs/mobilnetv3_most_uncertain.png)
+
+![alt text](imgs/mobilnetv3_most_uncertain.png)
+
+![alt text](imgs/mobilentv3_uncertainty_convergence.png)
+
+
+
+![alt text](imgs/mobilenetv3_mcdropout_confusionmatrix.png)
+
+
+Predictions changed by MC Dropout : 2 / 1243 samples
+
+Per-class accuracy:
+
+| Class             | N   | Std Acc | MC Acc (T=21) | Δ (MC − Std) |
+|-------------------|-----|----------|----------------|---------------|
+| dense             | 85  | 84.71%   | 84.71%         | +0.00%        |
+| dense_leafless    | 59  | 88.14%   | 88.14%         | +0.00%        |
+| dense_snow        | 9   | 100.00%  | 100.00%        | +0.00%        |
+| open              | 264 | 89.39%   | 89.77%         | +0.38%        |
+| open_leafless     | 258 | 96.12%   | 95.74%         | -0.39%        |
+| open_snow         | 80  | 96.25%   | 96.25%         | +0.00%        |
+| sparse            | 283 | 96.11%   | 96.11%         | +0.00%        |
+| sparse_leafless   | 179 | 91.06%   | 91.06%         | +0.00%        |
+| sparse_snow       | 26  | 100.00%  | 100.00%        | +0.00%        |
+
+
+
+##### Most Uncertain Samples
+
+Top-5 Most Uncertain Samples (by sample index)
+
+| T  | Rank 1 | Rank 2 | Rank 3 | Rank 4 | Rank 5 |
+|----|--------|--------|--------|--------|--------|
+| 1  | 0    | 1    | 2    | 3    | 4    |
+| 2  | 462  | 835  | 588  | 100  | 834  |
+| 3  | 399  | 493  | 122  | 40   | 120  |
+| 5  | 834  | 835  | 84   | 16   | 669  |
+| 8  | 835  | 1165 | 100  | 493  | 341  |
+| 13 | 835  | 305  | 493  | 183  | 100  |
+| 21 | 835  | 568  | 183  | 490  | 100  |
+
+=== Top-5 Most Confident Samples (by sample index) ===
+
+| T  | Rank 1 | Rank 2 | Rank 3 | Rank 4 | Rank 5 |
+|----|--------|--------|--------|--------|--------|
+| 1  | 0    | 1    | 2    | 3    | 4    |
+| 2  | 1043 | 1047 | 633  | 702  | 632  |
+| 3  | 1043 | 1047 | 633  | 711  | 622  |
+| 5  | 1047 | 633  | 1043 | 625  | 1051 |
+| 8  | 1043 | 1047 | 1051 | 633  | 711  |
+| 13 | 1047 | 633  | 1043 | 1051 | 711  |
+| 21 | 1047 | 1043 | 633  | 1042 | 1051 |
+
+=== Ranking Overlap with T=21 (Jaccard) ===
+
+| T  | Uncertain | Confident |
+|----|-----------|------------|
+| 1  | 0.00%     | 0.00%      |
+| 2  | 25.00%    | 42.86%     |
+| 3  | 0.00%     | 42.86%     |
+| 5  | 11.11%    | 66.67%     |
+| 8  | 25.00%    | 66.67%     |
+| 13 | 42.86%    | 66.67%     |
+| 21 | 100.00%   | 100.00%    |
+
+
+#### Efficientnetv2
+
+![alt text](imgs/efficientnetv2_results_mcdropout.png)
+
+T=  1  acc=92.04%  mean_norm_var=nan
+
+T=  2  acc=92.20%  mean_norm_var=0.0083
+
+T=  3  acc=92.44%  mean_norm_var=0.0129
+
+T=  5  acc=92.60%  mean_norm_var=0.0132
+
+T=  8  acc=92.60%  mean_norm_var=0.0184
+
+T= 13  acc=92.76%  mean_norm_var=0.0213
+
+T= 21  acc=92.68%  mean_norm_var=0.0166
+
+Baseline (dropout off) : 92.52%
+
+![alt text](imgs/efficientnetv2_uncertainty.png)
+
+Mean norm. variance — Correct : 0.0068
+
+Mean norm. variance — Wrong : 0.1416
+
+![alt text](imgs/efficientnetv2_most_uncertain.png)
+
+![alt text](imgs/efficientnetv2_most_certain.png)
+
+![alt text](imgs/efficientnetv2_uncertainty_convergence.png)
+
+![alt text](imgs/efficientnetv2_mcdropout_confusionmatrix.png)
+
+Predictions changed by MC Dropout : 4 / 1243 samples
+
+Per-class accuracy:
+
+| Class            | N   | Std Acc | MC Acc (T=21) | Δ (MC - Std) |
+|------------------|-----|----------|----------------|---------------|
+| dense            | 85  | 88.24%   | 88.24%         | +0.00%        |
+| dense_leafless   | 59  | 93.22%   | 93.22%         | +0.00%        |
+| dense_snow       | 9   | 88.89%   | 88.89%         | +0.00%        |
+| open             | 264 | 91.67%   | 91.67%         | +0.00%        |
+| open_leafless    | 258 | 96.51%   | 96.51%         | +0.00%        |
+| open_snow        | 80  | 85.00%   | 85.00%         | +0.00%        |
+| sparse           | 283 | 94.35%   | 95.05%         | +0.71%        |
+| sparse_leafless  | 179 | 91.62%   | 91.62%         | +0.00%        |
+| sparse_snow      | 26  | 84.62%   | 84.62%         | +0.00%        |
+
+
+##### Most Uncertain Samples
+
+Top-5 Most Uncertain Samples (by Sample Index)
+
+| T  | Rank 1 | Rank 2 | Rank 3 | Rank 4 | Rank 5 |
+|----|--------|--------|--------|--------|--------|
+| 1  | 0    | 1    | 2    | 3    | 4    |
+| 2  | 681  | 1165 | 387  | 677  | 368  |
+| 3  | 676  | 687  | 675  | 682  | 677  |
+| 5  | 678  | 683  | 40   | 676  | 675  |
+| 8  | 681  | 682  | 688  | 675  | 678  |
+| 13 | 681  | 688  | 675  | 676  | 682  |
+| 21 | 678  | 676  | 677  | 681  | 683  |
+
+
+Top-5 Most Confident Samples (by Sample Index)
+
+| T  | Rank 1 | Rank 2 | Rank 3 | Rank 4 | Rank 5 |
+|----|--------|--------|--------|--------|--------|
+| 1  | 0    | 1    | 2    | 3    | 4    |
+| 2  | 702  | 1004 | 713  | 720  | 740  |
+| 3  | 70   | 1003 | 1010 | 740  | 625  |
+| 5  | 720  | 702  | 1003 | 625  | 1002 |
+| 8  | 740  | 999  | 1003 | 1004 | 701  |
+| 13 | 1007 | 999  | 720  | 736  | 1005 |
+| 21 | 999  | 1003 | 1007 | 740  | 1009 |
+
+
+Ranking Overlap with T=21 (Jaccard)
+
+| T  | Uncertain | Confident |
+|----|-----------|------------|
+| 1  | 0.00%     | 0.00%      |
+| 2  | 25.00%    | 11.11%     |
+| 3  | 25.00%    | 25.00%     |
+| 5  | 42.86%    | 11.11%     |
+| 8  | 25.00%    | 42.86%     |
+| 13 | 25.00%    | 25.00%     |
+| 21 | 100.00%   | 100.00%    |
