@@ -35,7 +35,7 @@ When the data is loaded, the species are counted and that count is multiplied wi
 This probability is calculated since we want to know what species in the habitats appear. The mathematical formula:
 
 $$
-P(species|habitat)= \frac {counts_{habitat,species}}{\sum_{\substack{\\species}}counts_{habits,species}}
+P(species|habitat)= \frac {counts_{habitat,species}}{\sum_{\substack{species}}counts_{habits,species}}
 $$
 
 ![P(species|habitat)](imgs/p(sh).png)
@@ -46,7 +46,7 @@ $$
 This probability is calculated to figure out where the animals are seen and to what extend. The mathematical formula:
 
 $$
-P(habitat|species)= \frac {counts_{habitat,species}}{\sum_{\substack{\\habitat}}counts_{habits,species}}
+P(habitat|species)= \frac {counts_{habitat,species}}{\sum_{\substack{habitat}}counts_{habits,species}}
 $$
 
 ![P(habitat|species)](imgs/p(hs).png)
