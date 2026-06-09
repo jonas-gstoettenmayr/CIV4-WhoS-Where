@@ -21,7 +21,7 @@ Order to view Documentation in:
 
 1. [Data preperation](documentation/Data_preperation.md) (By Jonas Gstöttenmayr): explains code and decisions from: utils.py, view_images.ipynb, prototyping.ipyinb, cut_images.ipynb, match_lables_with_gt.ipynb
 2. [Data annotation and augmentation](documentation/Data_annotation_and_augmentation.md) (By Andrej Majev): explains the annotation process and code and decisions from: data_loading_augmentation.py
-3. [Training](documentation/Training_models.md) (By Maria Helmetsberger): explains the models, the decisions and the outcome from: train_model.ipynb and train_model_efficientnetv2.ipynb
+3. [Training](documentation/Training_Models.md) (By Maria Helmetsberger): explains the models, the decisions and the outcome from: train_model.ipynb and train_model_efficientnetv2.ipynb
 4. [Visualization](documentation/calculation_and_visualization.md) (by Bettina Pölzleitner): explains why the chosen probabilities were calculated and shows plots with the results
 
 
@@ -37,9 +37,7 @@ Ground truth: [https://github.com/bambi-eco/Dataset](https://github.com/bambi-ec
 
 The naming convention of the cutouts consists of `flight_frame_group_countAnimalid.jpg`
 
-### Folder Structure
-
-#### Data folder
+### Data Folder Structure
 
 From the source files download the images_rgb.zip and labels_matched_rgb.zip, then simply extract them into a data folder from the root directory, the resulting structure should look like:
 
